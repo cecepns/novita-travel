@@ -120,7 +120,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
@@ -148,10 +148,10 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* History Timeline */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
@@ -185,7 +185,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team Section */}
       {/* <section className="py-16 bg-gray-50">

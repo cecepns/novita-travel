@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, Facebook } from 'lucide-react';
+import { settingsAPI } from '../../utils/api';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,38 @@ export default function ContactPage() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [settings, setSettings] = useState({
+    companyName: 'PT NOVITA TRAVEL',
+    address: 'Jl. Mugirejo, Mugirejo, Kec. Sungai Pinang, Kota Samarinda, Kalimantan Timur 75119',
+    phone: '+62 123 456 789',
+    email: 'info@novitatravel.com',
+    whatsapp: '+62 812 3456 789',
+    facebook: 'Novita Transpot Samarinda',
+    operatingHours: {
+      weekdays: '06:00 - 22:00',
+      weekends: '07:00 - 20:00'
+    },
+    maps: ''
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  const fetchSettings = async () => {
+    try {
+      const response = await settingsAPI.get();
+      setSettings(prev => ({
+        ...prev,
+        ...response.data
+      }));
+    } catch (error) {
+      console.error('Error fetching settings:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -40,28 +73,63 @@ export default function ContactPage() {
     {
       icon: MapPin,
       title: 'Alamat Kantor',
-      content: 'Jl. Mugirejo, Mugirejo, Kec. Sungai Pinang, Kota Samarinda, Kalimantan Timur 75119',
+      content: settings.address,
       color: 'text-red-600'
     },
     {
       icon: Phone,
       title: 'Telepon',
-      content: '+62 123 456 789',
+      content: settings.phone,
       color: 'text-blue-600'
     },
     {
       icon: Mail,
       title: 'Email',
-      content: 'info@novitatravel.com',
+      content: settings.email,
       color: 'text-green-600'
     },
     {
       icon: Clock,
       title: 'Jam Operasional',
-      content: 'Senin-Sabtu: 06:00-22:00\nMinggu: 07:00-20:00',
+      content: `Senin-Sabtu: ${settings.operatingHours.weekdays}\nMinggu: ${settings.operatingHours.weekends}`,
       color: 'text-purple-600'
     }
   ];
+
+  // Helper function to convert Google Maps URL to embed URL
+  const getEmbedUrl = (mapsUrl) => {
+    if (!mapsUrl) return '';
+    
+    // If it's already an embed URL, return as is
+    if (mapsUrl.includes('embed')) {
+      return mapsUrl;
+    }
+    
+    // Handle Google Maps sharing URLs (maps.app.goo.gl)
+    if (mapsUrl.includes('maps.app.goo.gl')) {
+      // For maps.app.goo.gl URLs, we'll use a simple approach
+      // The URL will be converted to a basic embed format
+      // Note: For production use, you might want to implement proper URL resolution
+      return mapsUrl.replace('maps.app.goo.gl', 'www.google.com/maps/embed');
+    }
+    
+    // Handle regular Google Maps URLs
+    if (mapsUrl.includes('google.com/maps')) {
+      // Convert to embed format
+      return mapsUrl.replace('/maps/', '/maps/embed/');
+    }
+    
+    // If it's a direct embed URL or other format, return as is
+    return mapsUrl;
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -222,8 +290,23 @@ export default function ContactPage() {
               </h2>
               
               {/* Google Maps Embedded */}
-              <div className="bg-gray-200 h-64 rounded-lg mb-6 flex items-center justify-center">
-                <p className="text-gray-600">Google Maps akan dimuat di sini</p>
+              <div className="h-64 rounded-lg mb-6 overflow-hidden">
+                {settings.maps ? (
+                  <iframe
+                    src={getEmbedUrl(settings.maps)}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Lokasi Kantor"
+                  />
+                ) : (
+                  <div className="bg-gray-200 h-full flex items-center justify-center">
+                    <p className="text-gray-600">Google Maps akan dimuat di sini</p>
+                  </div>
+                )}
               </div>
 
               {/* Additional Contact Methods */}
@@ -234,7 +317,7 @@ export default function ContactPage() {
                     Untuk respon lebih cepat, hubungi kami langsung melalui WhatsApp
                   </p>
                   <a 
-                    href="https://wa.me/6281234567890"
+                    href={`https://wa.me/${settings.whatsapp.replace(/[^0-9]/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors duration-200 font-medium inline-block"
@@ -250,7 +333,7 @@ export default function ContactPage() {
                   </p>
                   <div className="flex space-x-4">
                     <a 
-                      href="https://facebook.com/novitatransport"
+                      href={`https://facebook.com/${settings.facebook.replace(/\s+/g, '').toLowerCase()}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors duration-200"
