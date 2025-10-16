@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MapPin } from 'lucide-react';
-import Logo from '../../assets/logo.png';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Phone, MapPin } from "lucide-react";
+import Logo from "../../assets/logo.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Layanan', href: '/layanan' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Layanan", href: "/layanan" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -24,16 +24,16 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <div className="flex items-center">
               <Phone className="w-4 h-4 mr-2" />
-              <span>+62 123 456 789</span>
+              <span>+(Admin) +62 852-4717-0317 - Gunanti</span>
             </div>
             <div className="flex items-center">
               <MapPin className="w-4 h-4 mr-2" />
-              <span className="hidden md:block">Jl. Mugirejo, Samarinda, Kalimantan Timur</span>
+              <span className="hidden md:block">
+                Jl. Mugirejo, Samarinda, Kalimantan Timur
+              </span>
             </div>
           </div>
-          <div className="text-sm">
-            FB: Novita Transpot Samarinda
-          </div>
+          <div className="text-sm">FB: Novita Transpot Samarinda</div>
         </div>
       </div>
 
@@ -47,8 +47,12 @@ export default function Navbar() {
                 <img src={Logo} alt="Logo" className="w-20 h-auto" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-800">PT NOVITA TRAVEL</h1>
-                <p className="text-sm text-gray-600">Travel & Logistik Terpercaya</p>
+                <h1 className="text-xl font-bold text-gray-800">
+                  PT NOVITA TRAVEL
+                </h1>
+                <p className="text-sm text-gray-600">
+                  Travel & Logistik Terpercaya
+                </p>
               </div>
             </Link>
 
@@ -60,8 +64,8 @@ export default function Navbar() {
                   to={item.href}
                   className={`font-medium transition-colors duration-200 ${
                     isActive(item.href)
-                      ? 'text-primary-600 border-b-2 border-primary-600 pb-1'
-                      : 'text-gray-700 hover:text-primary-600'
+                      ? "text-primary-600 border-b-2 border-primary-600 pb-1"
+                      : "text-gray-700 hover:text-primary-600"
                   }`}
                 >
                   {item.name}
@@ -80,7 +84,11 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden text-gray-700"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
 
@@ -94,8 +102,8 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`block py-2 px-4 font-medium transition-colors duration-200 ${
                     isActive(item.href)
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                      ? "text-primary-600 bg-primary-50"
+                      : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
                   }`}
                 >
                   {item.name}
