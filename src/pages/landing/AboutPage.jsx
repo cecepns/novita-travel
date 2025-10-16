@@ -96,7 +96,7 @@ export default function AboutPage() {
               <p className="text-lg text-gray-600 mb-6">
                 Dengan pengalaman lebih dari satu dekade, kami telah melayani puluhan ribu pelanggan dan membangun kepercayaan sebagai partner terbaik untuk kebutuhan transportasi dan logistik di wilayah Kalimantan Timur.
               </p>
-              <div className="grid grid-cols-2 gap-6">
+              {/* <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
                   <h3 className="text-3xl font-bold text-primary-600 mb-2">10,000+</h3>
                   <p className="text-gray-600">Pelanggan Puas</p>
@@ -105,7 +105,7 @@ export default function AboutPage() {
                   <h3 className="text-3xl font-bold text-primary-600 mb-2">50+</h3>
                   <p className="text-gray-600">Unit Armada</p>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="lg:w-1/2" data-aos="fade-left">
               <img 
@@ -187,7 +187,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
@@ -218,10 +218,10 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Certificates Section */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
@@ -253,7 +253,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

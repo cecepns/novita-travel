@@ -2,16 +2,13 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Users,
   Award,
   Clock,
   CheckCircle,
-  Bus,
-  Package,
-  Star,
 } from "lucide-react";
 import { servicesAPI } from "../../utils/api";
 import { getImageUrl } from "../../utils/imageUtils";
+import Banner from '../../assets/logo.jpeg';
 
 export default function HomePage() {
   const [services, setServices] = useState([]);
@@ -32,29 +29,26 @@ export default function HomePage() {
     }
   };
 
-  const stats = [
-    { icon: Users, value: "10,000+", label: "Happy Customers" },
-    { icon: Award, value: "14", label: "Years Experience" },
-    { icon: Bus, value: "50+", label: "Fleet Units" },
-    { icon: Package, value: "99%", label: "On-Time Delivery" },
-  ];
+  // stats section is currently not used
 
   const features = [
     {
-      title: "Armada Terpelihara",
+      title: "🚐 Layanan Profesional",
       description:
-        "Kendaraan terawat dengan baik dan berstandar keselamatan tinggi",
+        "Proses pemesanan mudah dan transparan, didukung tim yang ramah serta siap membantu dari pemesanan hingga keberangkatan.",
       icon: CheckCircle,
     },
     {
-      title: "Driver Berpengalaman",
-      description: "Sopir profesional dengan pengalaman puluhan tahun",
-      icon: Users,
+      title: "💻 Pemesanan Online Cepat",
+      description:
+        "Nikmati kemudahan reservasi tiket secara online melalui website resmi kami—praktis, efisien, dan bisa diakses kapan saja.",
+      icon: Clock,
     },
     {
-      title: "24/7 Customer Service",
-      description: "Layanan pelanggan tersedia 24 jam untuk kebutuhan Anda",
-      icon: Clock,
+      title: "💸 Harga Terjangkau & Jelas",
+      description:
+        "Kami menawarkan tarif kompetitif tanpa biaya tersembunyi, dengan layanan lengkap mulai dari travel reguler, carter, hingga ekspedisi barang.",
+      icon: Award,
     },
   ];
 
@@ -90,7 +84,7 @@ export default function HomePage() {
             </div>
             <div className="lg:w-1/2" data-aos="fade-left">
               <img
-                src="https://images.pexels.com/photos/1095814/pexels-photo-1095814.jpeg"
+                src={Banner}
                 alt="Travel Bus"
                 className="rounded-2xl shadow-2xl w-full max-w-lg mx-auto"
               />
@@ -100,7 +94,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -121,7 +115,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Features Section */}
       <section className="py-16 bg-gray-50">
@@ -131,8 +125,7 @@ export default function HomePage() {
               Mengapa Memilih PT Novita Travel?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Kami berkomitmen memberikan pelayanan terbaik dengan standar
-              keselamatan dan kenyamanan tinggi
+              PT Novita Travel adalah penyedia jasa travel dan ekspedisi terpercaya di Samarinda yang telah beroperasi sejak 2010. Kami berkomitmen memberikan layanan perjalanan aman, nyaman, dan tepat waktu bagi pelanggan di seluruh Kalimantan Timur.
             </p>
           </div>
 
@@ -231,7 +224,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonial Section */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
@@ -304,7 +297,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-16 bg-primary-600 text-white">
