@@ -1,4 +1,5 @@
 import { Users, Target, Award, Heart } from 'lucide-react';
+import Banner from '../../assets/logo.jpeg';
 
 export default function AboutPage() {
   const values = [
@@ -109,7 +110,7 @@ export default function AboutPage() {
             </div>
             <div className="lg:w-1/2" data-aos="fade-left">
               <img 
-                src="https://images.pexels.com/photos/1095814/pexels-photo-1095814.jpeg" 
+                src={Banner}
                 alt="PT Novita Travel Office" 
                 className="rounded-2xl shadow-lg w-full"
               />
